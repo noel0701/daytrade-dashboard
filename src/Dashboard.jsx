@@ -301,19 +301,14 @@ function HoldingAnalysisPanel({ holding: h, current }) {
 
 日本語で回答してください。`;
 
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          messages: [{ role: "user", content: prompt }],
-        }),
+        body: JSON.stringify({ prompt }),
       });
       const data = await res.json();
-      if (data.error) throw new Error(data.error.message);
-      const text = data.content?.map(c => c.text || "").join("") ?? "";
-      setAnalysis(text);
+      if (data.error) throw new Error(data.error);
+      setAnalysis(data.text);
     } catch (e) {
       setError(e.message);
     } finally {
