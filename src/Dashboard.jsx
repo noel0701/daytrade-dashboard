@@ -63,28 +63,38 @@ const Tip = ({ active, payload, label }) => {
 };
 
 // ── Topics セクション ──────────────────────────────────────────────────────
-const TOPIC_META = {
-  "2026-05-27": { sentiment: "強気", score: 8, headline: "日経 史上初 66,000円超え", summary: "日経平均が史上初の66,000円台突破。政府の成長投資促進指針も追い風。全体強気だが高値警戒感あり。" },
-  "2026-05-28": { sentiment: "中立", score: 5, headline: "材料乏しく検索タイムアウト多発", summary: "大手賃上げは好材料も個別材料乏しく様子見ムード。#codeSearch タイムアウト多発で全候補への発注試行失敗。エントリー0件。" },
-  "2026-05-29": { sentiment: "中立", score: 4, headline: "銘柄名不一致エラー多発 エントリー0件", summary: "三菱電機IR Day・トクヤマ中計発表など材料あり。しかし銘柄名不一致エラー頻発で全候補スキップ。トヨタ次世代EV開発中止・JAL緊急着陸などネガティブ材料散見。" },
+// ハードコードの定義（picks JSONがない場合のフォールバック）
+const TOPIC_META_FALLBACK = {
+  "2026-05-27": { sentiment:"強気", score:8, headline:"日経 史上初 66,000円超え",        summary:"日経平均が史上初の66,000円台突破。政府の成長投資促進指針も追い風。全体強気だが高値警戒感あり。" },
+  "2026-05-28": { sentiment:"中立", score:5, headline:"材料乏しく検索タイムアウト多発",   summary:"大手賃上げは好材料も個別材料乏しく様子見ムード。#codeSearch タイムアウト多発で全候補への発注試行失敗。エントリー0件。" },
+  "2026-05-29": { sentiment:"中立", score:4, headline:"銘柄名不一致エラー多発 エントリー0件", summary:"三菱電機IR Day・トクヤマ中計発表など材料あり。しかし銘柄名不一致エラー頻発で全候補スキップ。トヨタ次世代EV開発中止・JAL緊急着陸などネガティブ材料散見。" },
 };
-const AVOID_META = {
-  "2026-05-27": [{ code:"7011", name:"三菱重工業", reason:"北朝鮮ミサイル発射で防衛関連期待も高値圏。材料の新鮮さ欠如" }],
-  "2026-05-28": [{ code:"9201", name:"日本航空",  reason:"客室乗務員飲酒問題でネガティブ材料継続" }],
+const AVOID_META_FALLBACK = {
+  "2026-05-27": [{ code:"7011", name:"三菱重工業",   reason:"北朝鮮ミサイル発射で防衛関連期待も高値圏。材料の新鮮さ欠如" }],
+  "2026-05-28": [{ code:"9201", name:"日本航空",     reason:"客室乗務員飲酒問題でネガティブ材料継続" }],
   "2026-05-29": [{ code:"7203", name:"トヨタ自動車", reason:"次世代EV開発中止報道でネガティブ" },
                  { code:"9201", name:"日本航空",     reason:"緊急着陸・飲酒問題のダブルパンチ" }],
 };
 
-function TopicsSection({ picksByDate }) {
+function TopicsSection({ picksByDate, topicsMeta }) {
   const dates = Object.keys(picksByDate).sort();
   const [active, setActive] = useState(dates[dates.length - 1] ?? "");
 
   if (!dates.length) return <div style={{ color: C.muted, padding: 20 }}>データなし</div>;
 
   const picks = picksByDate[active] ?? [];
-  const meta  = TOPIC_META[active] ?? { sentiment:"不明", score:5, headline:"", summary:"" };
-  const avoid = AVOID_META[active] ?? [];
-  const sColor = meta.score >= 7 ? C.green : meta.score >= 5 ? C.yellow : C.red;
+
+  // picks JSONがあればそちら、なければフォールバック
+  const liveMeta  = topicsMeta?.[active];
+  const fallback  = TOPIC_META_FALLBACK[active] ?? { sentiment:"不明", score:5, headline:"", summary:"" };
+  const sentiment = liveMeta?.sentiment ?? fallback.sentiment;
+  const summary   = liveMeta?.summary   ?? fallback.summary;
+  const headline  = fallback.headline; // ヘッドラインはフォールバックのみ
+  const avoid     = liveMeta?.avoids    ?? AVOID_META_FALLBACK[active] ?? [];
+
+  // スコアはsentimentから推定
+  const sScore    = sentiment === "強気" ? 8 : sentiment === "中立" ? 5 : 3;
+  const sColor    = sScore >= 7 ? C.green : sScore >= 5 ? C.yellow : C.red;
 
   return (
     <div style={{ background: C.panel, border: `1px solid ${C.border}`, borderRadius: 12, padding: 20, marginBottom: 20 }}>
@@ -109,36 +119,47 @@ function TopicsSection({ picksByDate }) {
       {/* Headline row */}
       <div style={{ display:"flex", gap:12, alignItems:"flex-start", marginBottom:16, flexWrap:"wrap" }}>
         <div style={{ flex:"1 1 0", minWidth:180 }}>
-          <div style={{ fontSize:16, fontWeight:800, color:C.text, marginBottom:6 }}>{meta.headline}</div>
-          <div style={{ fontSize:12, color:"#8a90a8", lineHeight:1.75 }}>{meta.summary}</div>
+          <div style={{ fontSize:16, fontWeight:800, color:C.text, marginBottom:6 }}>{headline}</div>
+          <div style={{ fontSize:12, color:"#8a90a8", lineHeight:1.75 }}>{summary}</div>
         </div>
         <div style={{
           background: sColor+"18", border:`1px solid ${sColor}44`,
           borderRadius:8, padding:"10px 16px", textAlign:"center", minWidth:88,
         }}>
           <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>相場観</div>
-          <div style={{ fontSize:15, fontWeight:800, color:sColor }}>{meta.sentiment}</div>
+          <div style={{ fontSize:15, fontWeight:800, color:sColor }}>{sentiment}</div>
           <div style={{ fontSize:18, marginTop:4, letterSpacing:2 }}>
-            {"●".repeat(Math.round(meta.score/2))}{"○".repeat(5-Math.round(meta.score/2))}
+            {"●".repeat(Math.round(sScore/2))}{"○".repeat(5-Math.round(sScore/2))}
           </div>
         </div>
       </div>
 
-      {/* Picks */}
+      {/* Picks - reason付きで表示 */}
       <div style={{ marginBottom:picks.length ? 12 : 0 }}>
         <div style={{ fontSize:10, color:C.muted, letterSpacing:"0.07em", marginBottom:7 }}>📈 TOP PICKS (スコア7+)</div>
         {picks.length === 0 && <div style={{ fontSize:12, color:C.muted }}>この日はスコア7以上の候補なし</div>}
         {picks.map((p, i) => (
           <div key={i} style={{
-            background:"#0d1020", borderRadius:7, padding:"9px 12px",
-            border:`1px solid ${C.border}`, display:"flex", gap:10, alignItems:"center",
-            flexWrap:"wrap", marginBottom:5,
+            background:"#0d1020", borderRadius:7, padding:"10px 14px",
+            border:`1px solid ${C.border}`, marginBottom:6,
           }}>
-            <Badge color={C.green}>{p.code}</Badge>
-            <span style={{ fontSize:13, fontWeight:600, color:C.text, minWidth:110 }}>{p.name}</span>
-            <div style={{ background:C.green+"22", color:C.green, borderRadius:4, padding:"2px 8px", fontSize:11, fontWeight:700 }}>
-              ★{p.score}
+            <div style={{ display:"flex", gap:10, alignItems:"center", flexWrap:"wrap", marginBottom: p.reason ? 6 : 0 }}>
+              <Badge color={C.green}>{p.code}</Badge>
+              <span style={{ fontSize:13, fontWeight:600, color:C.text, minWidth:110 }}>{p.name}</span>
+              <div style={{ background:C.green+"22", color:C.green, borderRadius:4, padding:"2px 8px", fontSize:11, fontWeight:700 }}>
+                ★{p.score}
+              </div>
+              {p.risk && (
+                <span style={{ fontSize:10, color:C.yellow, background:C.yellow+"15", borderRadius:4, padding:"2px 7px" }}>
+                  ⚠ {p.risk}
+                </span>
+              )}
             </div>
+            {p.reason && (
+              <div style={{ fontSize:12, color:"#8a90a8", lineHeight:1.6, paddingLeft:4 }}>
+                📌 {p.reason}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -214,7 +235,7 @@ function HoldingsSection({ holdings }) {
             {/* Chart */}
             {pts.length > 1 && (
               <>
-                <div style={{ fontSize:10, color:C.muted, marginBottom:6 }}>価格推移（監視ログ値）</div>
+                <div style={{ fontSize:10, color:C.muted, marginBottom:6 }}>価格推移（SBI日足）</div>
                 <ResponsiveContainer width="100%" height={180}>
                   <AreaChart data={pts} margin={{ left:0, right:14, top:8, bottom:0 }}>
                     <defs>
@@ -234,9 +255,135 @@ function HoldingsSection({ holdings }) {
                 </ResponsiveContainer>
               </>
             )}
+
+            {/* Claude AI 分析パネル */}
+            <HoldingAnalysisPanel holding={h} current={current} />
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// ── Claude AI 保有銘柄分析パネル ────────────────────────────────────────────
+function HoldingAnalysisPanel({ holding: h, current }) {
+  const [analysis, setAnalysis] = useState(null);
+  const [loading, setLoading]   = useState(false);
+  const [error, setError]       = useState(null);
+
+  const analyze = async () => {
+    setLoading(true);
+    setError(null);
+    setAnalysis(null);
+    try {
+      const slPct  = h.sl ? ((h.sl  - current) / current * 100).toFixed(1) : "未設定";
+      const tpPct  = h.tp ? ((h.tp  - current) / current * 100).toFixed(1) : "未設定";
+      const pnlAmt = h.pnl ?? ((current - h.avgCost) * h.qty);
+
+      const prompt = `あなたは日本株デイトレードの専門家です。以下の保有ポジションについて分析してください。
+
+【保有銘柄】
+- コード: ${h.code}
+- 銘柄名: ${h.name}
+- 保有株数: ${h.qty}株
+- 取得単価: ${h.avgCost.toLocaleString()}円
+- 現在値: ${current.toLocaleString()}円
+- 評価損益: ${pnlAmt >= 0 ? "+" : ""}${Math.round(pnlAmt).toLocaleString()}円
+- 損切ライン: ${h.sl?.toLocaleString() ?? "未設定"}円 (${slPct}%)
+- 利確ライン: ${h.tp?.toLocaleString() ?? "未設定"}円 (+${tpPct}%)
+
+以下の4点について、それぞれ100字程度で簡潔に答えてください：
+
+1. **損切・利確ラインの根拠**：現在設定されているラインは適切か？テクニカル的な観点から評価してください。
+2. **今後の価格見立て**：この銘柄の短期（数日〜1週間）の値動き予想と注目すべきポイントを述べてください。
+3. **直近の注目材料**：${h.name}（${h.code}）に関連する最近のニュースや材料、セクター動向を述べてください。
+4. **推奨アクション**：現在のポジションをどうすべきか（ホールド継続 / 損切検討 / 利確検討 / 追加買い検討）を根拠とともに述べてください。
+
+日本語で回答してください。`;
+
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          messages: [{ role: "user", content: prompt }],
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      const text = data.content?.map(c => c.text || "").join("") ?? "";
+      setAnalysis(text);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // マークダウンの**太字**をレンダリング
+  const renderText = (text) => {
+    return text.split("\n").map((line, i) => {
+      const parts = line.split(/\*\*(.+?)\*\*/g);
+      return (
+        <div key={i} style={{ marginBottom: line.trim() ? 6 : 4 }}>
+          {parts.map((p, j) =>
+            j % 2 === 1
+              ? <span key={j} style={{ color: C.accent, fontWeight: 700 }}>{p}</span>
+              : <span key={j}>{p}</span>
+          )}
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div style={{ marginTop: 16, borderTop: `1px solid ${C.border}`, paddingTop: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: C.text }}>🤖 Claude AI 銘柄分析</span>
+        <button onClick={analyze} disabled={loading} style={{
+          background: loading ? C.muted+"22" : C.accent+"22",
+          border: `1px solid ${loading ? C.muted : C.accent}`,
+          color: loading ? C.muted : C.accent,
+          borderRadius: 6, padding: "5px 14px", fontSize: 12,
+          cursor: loading ? "not-allowed" : "pointer", fontWeight: 600,
+          marginLeft: "auto",
+        }}>
+          {loading ? "⏳ 分析中..." : analysis ? "🔄 再分析" : "✨ 今すぐ分析"}
+        </button>
+      </div>
+
+      {!analysis && !loading && !error && (
+        <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.7, background: "#0d1020", borderRadius: 8, padding: "12px 14px" }}>
+          ボタンを押すとClaudeが以下を自動分析します：<br/>
+          📌 損切・利確ラインの根拠　📈 今後の価格見立て　📰 直近ニュース・材料　💡 推奨アクション
+        </div>
+      )}
+
+      {loading && (
+        <div style={{ fontSize: 12, color: C.accent, padding: "16px 0", textAlign: "center" }}>
+          ⚡ Claudeが{h.name}を分析しています...
+        </div>
+      )}
+
+      {error && (
+        <div style={{ fontSize: 12, color: C.red, background: C.red+"15", borderRadius: 8, padding: "10px 14px" }}>
+          ⚠️ エラー: {error}
+        </div>
+      )}
+
+      {analysis && (
+        <div style={{
+          fontSize: 12, color: "#c8cee0", lineHeight: 1.85,
+          background: "#0d1020", borderRadius: 8, padding: "14px 16px",
+          border: `1px solid ${C.accent}33`,
+        }}>
+          {renderText(analysis)}
+          <div style={{ fontSize: 10, color: C.muted, marginTop: 10, borderTop: `1px solid ${C.border}`, paddingTop: 8 }}>
+            ⚠️ 投資判断はご自身の責任で行ってください。AIの分析は参考情報です。
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -428,7 +575,7 @@ export default function Dashboard({ data }) {
             <TradeHistorySection trades={data.trades} />
           </>
         )}
-        {tab === "topics"   && <TopicsSection   picksByDate={data.picksByDate} />}
+        {tab === "topics"   && <TopicsSection   picksByDate={data.picksByDate} topicsMeta={data.topicsMeta} />}
         {tab === "holdings" && <HoldingsSection  holdings={data.holdings} />}
         {tab === "history"  && <TradeHistorySection trades={data.trades} />}
 

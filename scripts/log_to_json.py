@@ -255,11 +255,90 @@ def merge_live_holdings(data: dict, live_path: str) -> dict:
     return data
 
 
+def merge_picks_reasons(data: dict, picks_dir: str) -> dict:
+    """
+    picks_YYYYMMDD_HHMM.json から理由テキスト・相場観・avoidを読み込み
+    data["picksByDate"] にマージする。
+    """
+    picks_path = Path(picks_dir)
+    if not picks_path.is_dir():
+        print(f"⚠️  picks_dir が見つかりません: {picks_dir}")
+        return data
+
+    files = sorted(picks_path.glob("picks_*.json"))
+    if not files:
+        print(f"ℹ️  picks JSONファイルなし: {picks_dir}")
+        return data
+
+    # 日付ごとに最新のpicks JSONを選ぶ
+    latest_by_date = {}
+    for f in files:
+        # picks_20260527_1205.json -> 20260527
+        parts = f.stem.split("_")
+        if len(parts) >= 2:
+            date_key = parts[1]  # "20260527"
+            latest_by_date[date_key] = f  # 後勝ち（時刻が大きいほど新しい）
+
+    merged = 0
+    for date_key, fpath in latest_by_date.items():
+        try:
+            raw = json.loads(fpath.read_text(encoding="utf-8", errors="replace"))
+        except Exception:
+            continue
+
+        if "error" in raw or not raw.get("top_picks"):
+            continue
+
+        # ISO形式の日付キーに変換: "20260527" -> "2026-05-27"
+        iso_date = f"{date_key[:4]}-{date_key[4:6]}-{date_key[6:8]}"
+
+        # picksByDate に reason / risk / avoid を追加
+        existing_picks = {p["code"]: p for p in data["picksByDate"].get(iso_date, [])}
+
+        for pick in raw.get("top_picks", []):
+            code = str(pick.get("symbol", "")).strip()
+            if not code:
+                continue
+            if code in existing_picks:
+                existing_picks[code]["reason"] = pick.get("reason", "")
+                existing_picks[code]["risk"]   = pick.get("risk", "")
+            else:
+                score = pick.get("score", 0)
+                if score >= 7:
+                    existing_picks[code] = {
+                        "code":   code,
+                        "name":   pick.get("name", ""),
+                        "score":  score,
+                        "reason": pick.get("reason", ""),
+                        "risk":   pick.get("risk", ""),
+                    }
+
+        data["picksByDate"][iso_date] = sorted(
+            existing_picks.values(), key=lambda x: -x.get("score", 0)
+        )[:5]
+
+        # 相場観・サマリを追加
+        if iso_date not in data.get("topicsMeta", {}):
+            data.setdefault("topicsMeta", {})[iso_date] = {
+                "sentiment": raw.get("market_sentiment", "中立"),
+                "summary":   raw.get("summary", ""),
+                "avoids":    [
+                    {"code": s.get("symbol",""), "name": s.get("name",""), "reason": s.get("reason","")}
+                    for s in raw.get("avoid_stocks", [])
+                ],
+            }
+        merged += 1
+
+    print(f"✅ picks JSON マージ完了: {merged}日分")
+    return data
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--logs",          nargs="+", required=True, help=".log ファイルのパス")
     parser.add_argument("--output",        default="public/data.json",       help="出力JSONパス")
     parser.add_argument("--live-holdings", default=None,                      help="holdings_live.json のパス（省略可）")
+    parser.add_argument("--picks-dir",     default=None,                      help="picks_YYYYMMDD_HHMM.json が入ったフォルダ（省略可）")
     args = parser.parse_args()
 
     print(f"📂 ログ読み込み: {args.logs}")
@@ -285,6 +364,22 @@ def main():
     else:
         print("ℹ️  holdings_live.json なし。ログの値のみ使用します。")
         print("   Bot起動中に自動生成されます（10分ごと更新）")
+
+    # picks JSONフォルダから理由テキストをマージ
+    picks_dir = args.picks_dir
+    if picks_dir is None:
+        # デフォルト: daytrade_bot/logs フォルダを自動検索
+        candidates = [
+            "logs",
+            "../daytrade_bot/logs",
+            "C:/Users/Owner/Desktop/claude/daytrade_bot/logs",
+        ]
+        for c in candidates:
+            if Path(c).is_dir() and list(Path(c).glob("picks_*.json")):
+                picks_dir = c
+                break
+    if picks_dir:
+        data = merge_picks_reasons(data, picks_dir)
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
