@@ -179,9 +179,10 @@ function HoldingsSection({ holdings }) {
       </div>
       {holdings.map(h => {
         const pts = h.priceHistory ?? [];
-        const current = pts.length ? pts[pts.length-1].p : h.avgCost;
-        const pnl = (current - h.avgCost) * h.qty;
-        const pnlPct = ((current - h.avgCost) / h.avgCost * 100).toFixed(2);
+        // currentPrice があればそれを優先（holdings_live.json から取得した最新値）
+        const current = h.currentPrice ?? (pts.length ? pts[pts.length-1].p : h.avgCost);
+        const pnl = h.pnl ?? (current - h.avgCost) * h.qty;
+        const pnlPct = h.pnlPct ?? ((current - h.avgCost) / h.avgCost * 100).toFixed(2);
         const pc = pnl >= 0 ? C.green : C.red;
 
         return (
@@ -414,7 +415,10 @@ export default function Dashboard({ data }) {
           <KpiCard icon="📦" label="保有銘柄"   value={`${data.holdings.length}銘柄`}               sub={data.holdings[0]?.name ?? "—"} color={C.accent} />
           <KpiCard icon="💴" label="買付余力"   value={`¥${s.latestBalance?.toLocaleString?.() ?? 0}`} sub="最終取得値" color={C.yellow} />
           <KpiCard icon="✅" label="発注成功"   value={`${s.successTrades}件`}  sub={`全${s.totalTrades}試行`} color={C.green} />
-          <KpiCard icon="⚠️" label="エラー率"  value={s.totalTrades ? `${Math.round((1-s.successTrades/s.totalTrades)*100)}%` : "—"} sub="銘柄名不一致等" color={C.red} />
+          <KpiCard icon="📡" label="リアルタイム更新"
+            value={data.liveUpdatedAt ? "接続中" : "未接続"}
+            sub={data.liveUpdatedAt ? data.liveUpdatedAt.slice(0,16).replace("T"," ") : "Bot起動で自動連携"}
+            color={data.liveUpdatedAt ? C.green : C.muted} />
         </div>
 
         {tab === "overview" && (

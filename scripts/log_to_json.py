@@ -187,21 +187,104 @@ def parse_logs(log_paths: list[str]) -> dict:
     }
 
 
+def merge_live_holdings(data: dict, live_path: str) -> dict:
+    """
+    trader.py が書き出した holdings_live.json を読み込み、
+    data["holdings"] の currentPrice / pnl / pnlPct / buyingPower を上書きする。
+    価格履歴の末尾にも最新値を追記する。
+    """
+    p = Path(live_path)
+    if not p.exists():
+        print(f"⚠️  {live_path} が見つかりません（Bot未起動 or 未生成）。ログの値を使用します。")
+        return data
+
+    try:
+        live = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"⚠️  {live_path} の読み込み失敗: {e}")
+        return data
+
+    live_map = {h["code"]: h for h in live.get("holdings", [])}
+    updated_at = live.get("updatedAt", "")
+    label = updated_at[5:16].replace("T", " ") if updated_at else "live"  # "MM-DD HH:mm"
+
+    for h in data["holdings"]:
+        code = h.get("code")
+        if code not in live_map:
+            continue
+        lh = live_map[code]
+
+        # 現在値・損益を上書き
+        h["currentPrice"] = lh.get("currentPrice", h.get("avgCost", 0))
+        h["pnl"]          = lh.get("pnl",          0)
+        h["pnlPct"]       = lh.get("pnlPct",        0.0)
+        h["liveUpdatedAt"] = updated_at
+
+        # sl/tp を live から補完（ログに無い場合）
+        if not h.get("sl") and lh.get("sl"):
+            h["sl"] = lh["sl"]
+        if not h.get("tp") and lh.get("tp"):
+            h["tp"] = lh["tp"]
+
+        # 価格履歴の末尾に最新値を追記（重複しない場合のみ）
+        hist = h.get("priceHistory", [])
+        if not hist or hist[-1]["p"] != h["currentPrice"]:
+            hist.append({"t": label, "p": h["currentPrice"]})
+            h["priceHistory"] = hist
+
+        print(f"  📡 {code} 現在値上書き: {h['currentPrice']:,}円 | 損益: {h['pnl']:+,}円 ({h['pnlPct']:+.2f}%)")
+
+    # 買付余力も上書き
+    if live.get("buyingPower") is not None:
+        data["summary"]["latestBalance"] = live["buyingPower"]
+        # balanceHist にも追記
+        data["balanceHist"].append({"t": label, "v": live["buyingPower"]})
+
+    # 総損益も上書き
+    data["summary"]["totalPnl"] = live.get("totalPnl", data["summary"]["totalPnl"])
+    data["liveUpdatedAt"] = updated_at
+
+    print(f"✅ holdings_live.json マージ完了 ({updated_at})")
+    return data
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--logs",   nargs="+", required=True, help=".log ファイルのパス")
-    parser.add_argument("--output", default="public/data.json", help="出力JSONパス")
+    parser.add_argument("--logs",          nargs="+", required=True, help=".log ファイルのパス")
+    parser.add_argument("--output",        default="public/data.json",       help="出力JSONパス")
+    parser.add_argument("--live-holdings", default=None,                      help="holdings_live.json のパス（省略可）")
     args = parser.parse_args()
 
     print(f"📂 ログ読み込み: {args.logs}")
     data = parse_logs(args.logs)
+
+    # holdings_live.json があればマージして現在値を上書き
+    live_path = args.live_holdings
+    if live_path is None:
+        # デフォルト: daytrade_bot/logs/holdings_live.json を自動検索
+        candidates = [
+            "logs/holdings_live.json",
+            "../daytrade_bot/logs/holdings_live.json",
+            "C:/Users/Owner/Desktop/claude/daytrade_bot/logs/holdings_live.json",
+        ]
+        for c in candidates:
+            if Path(c).exists():
+                live_path = c
+                break
+
+    if live_path:
+        print(f"📡 リアルタイムデータ: {live_path}")
+        data = merge_live_holdings(data, live_path)
+    else:
+        print("ℹ️  holdings_live.json なし。ログの値のみ使用します。")
+        print("   Bot起動中に自動生成されます（10分ごと更新）")
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     s = data["summary"]
-    print(f"✅ 書き出し完了: {out}")
+    print(f"\n✅ 書き出し完了: {out}")
     print(f"   取引試行: {s['totalTrades']}件 | 発注成功: {s['successTrades']}件")
     print(f"   確定損益: {s['totalPnl']:+,}円 | 買付余力: {s['latestBalance']:,}円")
 
