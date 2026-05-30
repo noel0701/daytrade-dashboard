@@ -226,11 +226,18 @@ def merge_live_holdings(data: dict, live_path: str) -> dict:
         if not h.get("tp") and lh.get("tp"):
             h["tp"] = lh["tp"]
 
-        # 価格履歴の末尾に最新値を追記（重複しない場合のみ）
-        hist = h.get("priceHistory", [])
-        if not hist or hist[-1]["p"] != h["currentPrice"]:
-            hist.append({"t": label, "p": h["currentPrice"]})
-            h["priceHistory"] = hist
+        # priceHistory: live側に日足データがあればそれを優先、なければログ値末尾に追記
+        live_hist = lh.get("priceHistory", [])
+        if live_hist:
+            # SBIから取得した日足履歴を使用（完全な履歴）
+            h["priceHistory"] = live_hist
+            print(f"    📊 {code} 価格履歴: SBI日足 {len(live_hist)}件")
+        else:
+            # 従来通りログ値に最新値を追記
+            hist = h.get("priceHistory", [])
+            if not hist or hist[-1]["p"] != h["currentPrice"]:
+                hist.append({"t": label, "p": h["currentPrice"]})
+                h["priceHistory"] = hist
 
         print(f"  📡 {code} 現在値上書き: {h['currentPrice']:,}円 | 損益: {h['pnl']:+,}円 ({h['pnlPct']:+.2f}%)")
 
