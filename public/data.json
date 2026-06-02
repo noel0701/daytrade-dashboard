@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T15:47:56.183782",
+  "generatedAt": "2026-06-02T16:09:09.983108",
   "trades": [
     {
       "datetime": "2026-05-27 10:28",
@@ -312,7 +312,7 @@
     {
       "code": "4507",
       "name": "塩野義製薬",
-      "qty": 2,
+      "qty": 1,
       "avgCost": 2850.0,
       "sl": 2708.0,
       "tp": 3135.0,
@@ -338,17 +338,17 @@
           "p": 2831.5
         },
         {
-          "t": "06-02 15:47",
+          "t": "06-02 16:09",
           "p": 2823.0
         }
       ],
       "currentPrice": 2823.0,
-      "pnl": -54.0,
+      "pnl": -27.0,
       "pnlPct": -0.95,
       "liveUpdatedAt": "2026-06-02T11:01:10",
       "change": -42.0,
       "changePct": -1.47,
-      "yahooUpdated": "2026-06-02T15:47:55"
+      "yahooUpdated": "2026-06-02T16:09:09"
     },
     {
       "code": "6656",
@@ -369,19 +369,12 @@
         {
           "t": "06-02 11:01",
           "p": 993
-        },
-        {
-          "t": "06-02 15:47",
-          "p": 1038.0
         }
       ],
-      "currentPrice": 1038.0,
-      "pnl": -107.0,
-      "pnlPct": -9.34,
-      "liveUpdatedAt": "2026-06-02T11:01:10",
-      "change": 43.0,
-      "changePct": 4.32,
-      "yahooUpdated": "2026-06-02T15:47:55"
+      "currentPrice": 993,
+      "pnl": -152,
+      "pnlPct": -13.28,
+      "liveUpdatedAt": "2026-06-02T11:01:10"
     },
     {
       "code": "6522",
@@ -404,13 +397,10 @@
           "p": 796
         }
       ],
-      "currentPrice": 796.0,
-      "pnl": -104.0,
+      "currentPrice": 796,
+      "pnl": -104,
       "pnlPct": -11.56,
-      "liveUpdatedAt": "2026-06-02T11:01:10",
-      "change": -149.0,
-      "changePct": -15.77,
-      "yahooUpdated": "2026-06-02T15:47:55"
+      "liveUpdatedAt": "2026-06-02T11:01:10"
     },
     {
       "code": "6613",
@@ -429,14 +419,14 @@
           "p": 2923.0
         },
         {
-          "t": "06-02 15:47",
+          "t": "06-02 16:09",
           "p": 2740.0
         }
       ],
       "currentPrice": 2740.0,
       "change": 317.0,
       "changePct": 13.08,
-      "yahooUpdated": "2026-06-02T15:47:55",
+      "yahooUpdated": "2026-06-02T16:09:09",
       "pnl": -183.0,
       "pnlPct": -6.26
     },
@@ -459,19 +449,12 @@
         {
           "t": "06-02 11:01",
           "p": 3365
-        },
-        {
-          "t": "06-02 15:47",
-          "p": 3485.0
         }
       ],
-      "currentPrice": 3485.0,
-      "pnl": -410.0,
-      "pnlPct": -10.53,
-      "liveUpdatedAt": "2026-06-02T11:01:10",
-      "change": -330.0,
-      "changePct": -8.65,
-      "yahooUpdated": "2026-06-02T15:47:55"
+      "currentPrice": 3365,
+      "pnl": -530,
+      "pnlPct": -13.61,
+      "liveUpdatedAt": "2026-06-02T11:01:10"
     }
   ],
   "pnlTimeline": [
@@ -850,7 +833,7 @@
         "p": 2831.5
       },
       {
-        "t": "06-02 15:47",
+        "t": "06-02 16:09",
         "p": 2823.0
       }
     ],
@@ -884,10 +867,6 @@
       {
         "t": "06-02 11:01",
         "p": 3365
-      },
-      {
-        "t": "06-02 15:47",
-        "p": 3485.0
       }
     ],
     "6941": [
@@ -944,10 +923,6 @@
       {
         "t": "06-02 11:01",
         "p": 993
-      },
-      {
-        "t": "06-02 15:47",
-        "p": 1038.0
       }
     ],
     "6522": [
@@ -1000,7 +975,7 @@
         "p": 2923.0
       },
       {
-        "t": "06-02 15:47",
+        "t": "06-02 16:09",
         "p": 2740.0
       }
     ]
@@ -1010,16 +985,16 @@
     "successTrades": 9,
     "totalPnl": -823,
     "latestBalance": 5546.0,
-    "stockValue": 22105,
-    "stockCost": 22963,
-    "unrealizedPnl": -858,
+    "stockValue": 19117,
+    "stockCost": 20113,
+    "unrealizedPnl": -996,
     "realizedPnl": -823,
     "cashBalance": 5546,
-    "totalAssets": 27651,
-    "deployedCapital": 28509
+    "totalAssets": 24663,
+    "deployedCapital": 25659
   },
   "liveUpdatedAt": "2026-06-02T11:01:10",
-  "yahooPricesUpdatedAt": "2026-06-02T15:47:55",
+  "yahooPricesUpdatedAt": "2026-06-02T16:09:09",
   "topicsMeta": {
     "2026-05-27": {
       "sentiment": "強気",
