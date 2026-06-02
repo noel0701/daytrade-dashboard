@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T10:16:54.727689",
+  "generatedAt": "2026-06-02T10:20:06.704005",
   "trades": [
     {
       "datetime": "2026-05-27 10:28",
@@ -10,7 +10,8 @@
       "entry": 3284.0,
       "sl": 3185.0,
       "tp": 3448.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 10:39",
@@ -21,7 +22,8 @@
       "entry": 1360.0,
       "sl": 1328.0,
       "tp": 1437.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 10:58",
@@ -32,7 +34,8 @@
       "entry": 152.0,
       "sl": 147.0,
       "tp": 160.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 11:08",
@@ -43,7 +46,8 @@
       "entry": 148.0,
       "sl": 144.0,
       "tp": 155.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 11:10",
@@ -54,7 +58,8 @@
       "entry": 2691.5,
       "sl": 2624.0,
       "tp": 2799.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 11:26",
@@ -65,7 +70,8 @@
       "entry": 1262.5,
       "sl": 1230.0,
       "tp": 1312.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 11:27",
@@ -76,7 +82,8 @@
       "entry": 2111.0,
       "sl": 2059.0,
       "tp": 2196.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 11:29",
@@ -87,51 +94,8 @@
       "entry": 1370.0,
       "sl": 1335.0,
       "tp": 1445.0,
-      "status": "発注試行"
-    },
-    {
-      "datetime": "2026-05-27 11:30",
-      "code": "",
-      "name": "Ｇ－ＷＩＺＥ",
-      "dir": "BUY",
-      "qty": 68,
-      "entry": 148.0,
-      "sl": 144.0,
-      "tp": 155.0,
-      "status": "発注試行"
-    },
-    {
-      "datetime": "2026-05-27 11:41",
-      "code": "9201",
-      "name": "日本航空（JAL）",
-      "dir": "BUY",
-      "qty": 3,
-      "entry": 2692.0,
-      "sl": 2638.0,
-      "tp": 2786.0,
-      "status": "発注試行"
-    },
-    {
-      "datetime": "2026-05-27 11:50",
-      "code": "9201",
-      "name": "日本航空",
-      "dir": "BUY",
-      "qty": 3,
-      "entry": 2692.0,
-      "sl": 2625.0,
-      "tp": 2800.0,
-      "status": "発注試行"
-    },
-    {
-      "datetime": "2026-05-27 11:57",
-      "code": "6473",
-      "name": "ジェイテクト",
-      "dir": "BUY",
-      "qty": 4,
-      "entry": 2105.0,
-      "sl": 2052.0,
-      "tp": 2189.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 12:06",
@@ -142,7 +106,8 @@
       "entry": 1265.0,
       "sl": 1297.0,
       "tp": 1221.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
       "datetime": "2026-05-27 12:17",
@@ -153,18 +118,152 @@
       "entry": 2105.0,
       "sl": 2052.0,
       "tp": 2189.0,
-      "status": "発注試行"
+      "status": "発注試行",
+      "_from_log": true
     },
     {
-      "datetime": "2026-05-27 12:22",
-      "code": "6473",
-      "name": "ジェイテクト",
+      "datetime": "2026-06-01 09:26",
+      "code": "4507",
+      "name": "塩野義製薬",
       "dir": "BUY",
-      "qty": 4,
-      "entry": 2105.0,
-      "sl": 2052.0,
-      "tp": 2189.0,
-      "status": "発注試行"
+      "qty": 2,
+      "entry": 2954.0,
+      "sl": 2878.0,
+      "tp": 3100.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 09:57",
+      "code": "4369",
+      "name": "トリケミカル研究所",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 4360.0,
+      "sl": 4275.0,
+      "tp": 4560.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 10:06",
+      "code": "6779",
+      "name": "日本電波工業",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 3770.0,
+      "sl": 3685.0,
+      "tp": 3910.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 10:06",
+      "code": "4369",
+      "name": "トリケミカル研究所",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 4260.0,
+      "sl": 4175.0,
+      "tp": 4430.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 10:43",
+      "code": "6941",
+      "name": "山一電機",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 10140.0,
+      "sl": 9937.0,
+      "tp": 10546.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 13:46",
+      "code": "9984",
+      "name": "ソフトバンクグループ",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 8419.0,
+      "sl": 8258.0,
+      "tp": 8764.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 14:18",
+      "code": "9984",
+      "name": "ソフトバンクグループ",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 8494.0,
+      "sl": 8327.0,
+      "tp": 8837.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 14:19",
+      "code": "6656",
+      "name": "インスペック",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 995.0,
+      "sl": 965.0,
+      "tp": 1045.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-01 14:51",
+      "code": "6522",
+      "name": "アスタリスク",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 945.0,
+      "sl": 912.0,
+      "tp": 1011.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-02 09:03",
+      "code": "4516",
+      "name": "ネクセラファーマ",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 4118.0,
+      "sl": 3971.0,
+      "tp": 4339.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-02 09:38",
+      "code": "4571",
+      "name": "ネクセラファーマ",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 108.0,
+      "sl": 105.0,
+      "tp": 114.0,
+      "status": "発注試行",
+      "_from_log": true
+    },
+    {
+      "datetime": "2026-06-02 09:50",
+      "code": "6613",
+      "name": "QDレーザ",
+      "dir": "BUY",
+      "qty": 1,
+      "entry": 2923.0,
+      "sl": 2835.0,
+      "tp": 3098.0,
+      "status": "発注試行",
+      "_from_log": true
     }
   ],
   "holdings": [
@@ -343,34 +442,14 @@
   ],
   "pnlTimeline": [
     {
-      "date": "2026-05-28",
-      "pnl": 0,
-      "cumPnl": 0
-    },
-    {
-      "date": "2026-05-29",
-      "pnl": 0,
-      "cumPnl": 0
-    },
-    {
-      "date": "2026-05-30",
-      "pnl": 0,
-      "cumPnl": 0
-    },
-    {
-      "date": "2026-05-31",
-      "pnl": 0,
-      "cumPnl": 0
-    },
-    {
       "date": "2026-06-01",
-      "pnl": 0,
-      "cumPnl": 0
+      "pnl": -500,
+      "cumPnl": -500
     },
     {
       "date": "2026-06-02",
-      "pnl": -235,
-      "cumPnl": -235
+      "pnl": -666,
+      "cumPnl": -1166
     }
   ],
   "balanceHist": [
@@ -881,8 +960,8 @@
     ]
   },
   "summary": {
-    "totalTrades": 15,
-    "successTrades": 1,
+    "totalTrades": 22,
+    "successTrades": 9,
     "totalPnl": -654,
     "latestBalance": 5546.0
   },
