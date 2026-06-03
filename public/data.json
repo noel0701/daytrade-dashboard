@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T15:01:22.185917",
+  "generatedAt": "2026-06-03T15:09:01.116611",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -607,7 +607,7 @@
     "deployedCapital": 9355
   },
   "liveUpdatedAt": "2026-06-03T15:01:21",
-  "yahooPricesUpdatedAt": "2026-06-02T17:03:58",
+  "yahooPricesUpdatedAt": "2026-06-03T15:09:00",
   "topicsMeta": {
     "2026-05-27": {
       "sentiment": "強気",
