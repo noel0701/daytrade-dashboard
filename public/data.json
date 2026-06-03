@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T22:24:20.976785",
+  "generatedAt": "2026-06-03T22:50:56.835475",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -35,7 +35,49 @@
       "status": "✅ 発注完了"
     }
   ],
-  "holdings": [],
+  "holdings": [
+    {
+      "code": "4507",
+      "name": "塩野義製薬",
+      "qty": 1,
+      "avgCost": 2850.0,
+      "sl": 2708.0,
+      "tp": 3135.0,
+      "priceHistory": [
+        {
+          "t": "06-01 09:26",
+          "p": 2952.0
+        },
+        {
+          "t": "06-01 09:26",
+          "p": 2954.0
+        },
+        {
+          "t": "06-01 09:44",
+          "p": 2910.0
+        },
+        {
+          "t": "06-01 09:44",
+          "p": 2907.5
+        },
+        {
+          "t": "06-03 15:01",
+          "p": 2844
+        },
+        {
+          "t": "06-03 22:50",
+          "p": 2817.0
+        }
+      ],
+      "currentPrice": 2817.0,
+      "pnl": -33.0,
+      "pnlPct": -1.16,
+      "liveUpdatedAt": "2026-06-03T15:01:21",
+      "change": -6.0,
+      "changePct": -0.21,
+      "yahooUpdated": "2026-06-03T22:50:56"
+    }
+  ],
   "pnlTimeline": [
     {
       "date": "2026-06-01",
@@ -448,6 +490,14 @@
       {
         "t": "06-01 09:44",
         "p": 2907.5
+      },
+      {
+        "t": "06-03 15:01",
+        "p": 2844
+      },
+      {
+        "t": "06-03 22:50",
+        "p": 2817.0
       }
     ],
     "4369": [
@@ -598,16 +648,16 @@
     "successTrades": 3,
     "totalPnl": -6,
     "latestBalance": 9355.0,
-    "stockValue": 0,
-    "stockCost": 0,
-    "unrealizedPnl": 0,
+    "stockValue": 2817,
+    "stockCost": 2850,
+    "unrealizedPnl": -33,
     "realizedPnl": -6,
     "cashBalance": 9355,
-    "totalAssets": 9355,
-    "deployedCapital": 9355
+    "totalAssets": 12172,
+    "deployedCapital": 12205
   },
   "liveUpdatedAt": "2026-06-03T15:01:21",
-  "yahooPricesUpdatedAt": "2026-06-03T22:24:20",
+  "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
       "sentiment": "強気",
