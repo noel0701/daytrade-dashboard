@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-04T14:15:35.685030",
+  "generatedAt": "2026-06-04T14:16:10.850112",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -55,6 +55,17 @@
       "sl": 625,
       "tp": 1021,
       "status": "✅ 発注完了"
+    },
+    {
+      "datetime": "2026-06-04 14:15",
+      "code": "6656",
+      "name": "インスペック",
+      "dir": "SELL",
+      "qty": 2,
+      "entry": 1256.0,
+      "sl": 1030,
+      "tp": 1820,
+      "status": "✅ 発注完了"
     }
   ],
   "holdings": [
@@ -83,8 +94,8 @@
           "p": 2907.5
         },
         {
-          "t": "06-04 14:15",
-          "p": 2822.5
+          "t": "06-04 14:16",
+          "p": 2823
         },
         {
           "t": "06-03 22:50",
@@ -94,7 +105,7 @@
       "currentPrice": 2817.0,
       "pnl": -33.0,
       "pnlPct": -1.16,
-      "liveUpdatedAt": "2026-06-04T14:15:35",
+      "liveUpdatedAt": "2026-06-04T14:16:10",
       "change": -6.0,
       "changePct": -0.21,
       "yahooUpdated": "2026-06-03T22:50:56"
@@ -120,14 +131,14 @@
           "p": 1256.0
         },
         {
-          "t": "06-04 14:15",
-          "p": 1224
+          "t": "06-04 14:16",
+          "p": 1228
         }
       ],
-      "currentPrice": 1224,
-      "pnl": -154,
-      "pnlPct": -5.92,
-      "liveUpdatedAt": "2026-06-04T14:15:35"
+      "currentPrice": 1228,
+      "pnl": -146,
+      "pnlPct": -5.61,
+      "liveUpdatedAt": "2026-06-04T14:16:10"
     }
   ],
   "pnlTimeline": [
@@ -145,6 +156,11 @@
       "date": "2026-06-03",
       "pnl": -50,
       "cumPnl": -1216
+    },
+    {
+      "date": "2026-06-04",
+      "pnl": -154,
+      "cumPnl": -1370
     }
   ],
   "balanceHist": [
@@ -177,7 +193,7 @@
       "v": 13857.0
     },
     {
-      "t": "06-04 14:15",
+      "t": "06-04 14:16",
       "v": 3857.0
     }
   ],
@@ -557,8 +573,8 @@
         "p": 2907.5
       },
       {
-        "t": "06-04 14:15",
-        "p": 2822.5
+        "t": "06-04 14:16",
+        "p": 2823
       },
       {
         "t": "06-03 22:50",
@@ -649,8 +665,8 @@
         "p": 1256.0
       },
       {
-        "t": "06-04 14:15",
-        "p": 1224
+        "t": "06-04 14:16",
+        "p": 1228
       }
     ],
     "6522": [
@@ -713,19 +729,19 @@
     ]
   },
   "summary": {
-    "totalTrades": 5,
-    "successTrades": 5,
-    "totalPnl": -181,
+    "totalTrades": 6,
+    "successTrades": 6,
+    "totalPnl": -173,
     "latestBalance": 3857.0,
-    "stockValue": 5265,
+    "stockValue": 5273,
     "stockCost": 5362,
-    "unrealizedPnl": -97,
-    "realizedPnl": -181,
+    "unrealizedPnl": -89,
+    "realizedPnl": -173,
     "cashBalance": 3857,
-    "totalAssets": 9122,
+    "totalAssets": 9130,
     "deployedCapital": 9219
   },
-  "liveUpdatedAt": "2026-06-04T14:15:35",
+  "liveUpdatedAt": "2026-06-04T14:16:10",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
