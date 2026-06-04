@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-04T14:47:27.804988",
+  "generatedAt": "2026-06-04T14:48:03.447458",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -94,8 +94,8 @@
           "p": 2907.5
         },
         {
-          "t": "06-04 14:47",
-          "p": 2826.5
+          "t": "06-04 14:48",
+          "p": 2826
         },
         {
           "t": "06-03 22:50",
@@ -105,7 +105,7 @@
       "currentPrice": 2817.0,
       "pnl": -33.0,
       "pnlPct": -1.16,
-      "liveUpdatedAt": "2026-06-04T14:47:27",
+      "liveUpdatedAt": "2026-06-04T14:48:03",
       "change": -6.0,
       "changePct": -0.21,
       "yahooUpdated": "2026-06-03T22:50:56"
@@ -131,14 +131,14 @@
           "p": 1256.0
         },
         {
-          "t": "06-04 14:47",
-          "p": 1217
+          "t": "06-04 14:48",
+          "p": 1216
         }
       ],
-      "currentPrice": 1217,
-      "pnl": -168,
-      "pnlPct": -6.46,
-      "liveUpdatedAt": "2026-06-04T14:47:27"
+      "currentPrice": 1216,
+      "pnl": -170,
+      "pnlPct": -6.53,
+      "liveUpdatedAt": "2026-06-04T14:48:03"
     }
   ],
   "pnlTimeline": [
@@ -159,8 +159,8 @@
     },
     {
       "date": "2026-06-04",
-      "pnl": -154,
-      "cumPnl": -1370
+      "pnl": -326,
+      "cumPnl": -1542
     }
   ],
   "balanceHist": [
@@ -193,7 +193,7 @@
       "v": 13857.0
     },
     {
-      "t": "06-04 14:47",
+      "t": "06-04 14:48",
       "v": 3857.0
     }
   ],
@@ -573,8 +573,8 @@
         "p": 2907.5
       },
       {
-        "t": "06-04 14:47",
-        "p": 2826.5
+        "t": "06-04 14:48",
+        "p": 2826
       },
       {
         "t": "06-03 22:50",
@@ -665,8 +665,8 @@
         "p": 1256.0
       },
       {
-        "t": "06-04 14:47",
-        "p": 1217
+        "t": "06-04 14:48",
+        "p": 1216
       }
     ],
     "6522": [
@@ -731,17 +731,17 @@
   "summary": {
     "totalTrades": 6,
     "successTrades": 6,
-    "totalPnl": -191,
+    "totalPnl": -194,
     "latestBalance": 3857.0,
-    "stockValue": 5251,
+    "stockValue": 5249,
     "stockCost": 5362,
-    "unrealizedPnl": -111,
-    "realizedPnl": -191,
+    "unrealizedPnl": -113,
+    "realizedPnl": -194,
     "cashBalance": 3857,
-    "totalAssets": 9108,
+    "totalAssets": 9106,
     "deployedCapital": 9219
   },
-  "liveUpdatedAt": "2026-06-04T14:47:27",
+  "liveUpdatedAt": "2026-06-04T14:48:03",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
