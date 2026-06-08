@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T15:02:34.923156",
+  "generatedAt": "2026-06-08T09:32:35.205671",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -79,49 +79,7 @@
       "status": "✅ 発注完了"
     }
   ],
-  "holdings": [
-    {
-      "code": "4507",
-      "name": "塩野義製薬",
-      "qty": 1,
-      "avgCost": 2850.0,
-      "sl": 2708.0,
-      "tp": 3135.0,
-      "priceHistory": [
-        {
-          "t": "06-01 09:26",
-          "p": 2952.0
-        },
-        {
-          "t": "06-01 09:26",
-          "p": 2954.0
-        },
-        {
-          "t": "06-01 09:44",
-          "p": 2910.0
-        },
-        {
-          "t": "06-01 09:44",
-          "p": 2907.5
-        },
-        {
-          "t": "06-05 15:02",
-          "p": 2858
-        },
-        {
-          "t": "06-03 22:50",
-          "p": 2817.0
-        }
-      ],
-      "currentPrice": 2817.0,
-      "pnl": -33.0,
-      "pnlPct": -1.16,
-      "liveUpdatedAt": "2026-06-05T15:02:34",
-      "change": -6.0,
-      "changePct": -0.21,
-      "yahooUpdated": "2026-06-03T22:50:56"
-    }
-  ],
+  "holdings": [],
   "pnlTimeline": [
     {
       "date": "2026-06-01",
@@ -178,8 +136,8 @@
       "v": 3857.0
     },
     {
-      "t": "06-05 15:02",
-      "v": 46063.0
+      "t": "06-08 09:32",
+      "v": 0.0
     }
   ],
   "picksByDate": {
@@ -572,14 +530,6 @@
       {
         "t": "06-01 09:44",
         "p": 2907.5
-      },
-      {
-        "t": "06-05 15:02",
-        "p": 2858
-      },
-      {
-        "t": "06-03 22:50",
-        "p": 2817.0
       }
     ],
     "4369": [
@@ -728,17 +678,17 @@
   "summary": {
     "totalTrades": 7,
     "successTrades": 7,
-    "totalPnl": 8,
-    "latestBalance": 46063.0,
-    "stockValue": 2817,
-    "stockCost": 2850,
-    "unrealizedPnl": -33,
-    "realizedPnl": 8,
-    "cashBalance": 46063,
-    "totalAssets": 48880,
-    "deployedCapital": 48913
+    "totalPnl": 0,
+    "latestBalance": 0.0,
+    "stockValue": 0,
+    "stockCost": 0,
+    "unrealizedPnl": 0,
+    "realizedPnl": 0,
+    "cashBalance": 0,
+    "totalAssets": 0,
+    "deployedCapital": 0
   },
-  "liveUpdatedAt": "2026-06-05T15:02:34",
+  "liveUpdatedAt": "2026-06-08T09:32:34",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
