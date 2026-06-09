@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T11:10:14.521245",
+  "generatedAt": "2026-06-09T11:42:47.887110",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -136,7 +136,7 @@
       "v": 3857.0
     },
     {
-      "t": "06-09 11:10",
+      "t": "06-09 11:42",
       "v": 0.0
     }
   ],
@@ -688,7 +688,7 @@
     "totalAssets": 0,
     "deployedCapital": 0
   },
-  "liveUpdatedAt": "2026-06-09T11:10:14",
+  "liveUpdatedAt": "2026-06-09T11:42:47",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
