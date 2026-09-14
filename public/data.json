@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T15:02:42.259141",
+  "generatedAt": "2026-09-14T12:27:27.489418",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -77,6 +77,17 @@
       "sl": 1000,
       "tp": 2053,
       "status": "✅ 発注完了"
+    },
+    {
+      "datetime": "2026-09-14 11:56",
+      "code": "4507",
+      "name": "塩野義製薬",
+      "dir": "SELL",
+      "qty": 1,
+      "entry": 2850,
+      "sl": 2708,
+      "tp": 3135,
+      "status": "✅ 発注完了"
     }
   ],
   "holdings": [],
@@ -136,8 +147,12 @@
       "v": 3857.0
     },
     {
-      "t": "06-09 15:02",
-      "v": 0.0
+      "t": "09-14 11:59",
+      "v": 5311.0
+    },
+    {
+      "t": "09-14 12:27",
+      "v": 5311.0
     }
   ],
   "picksByDate": {
@@ -676,19 +691,19 @@
     ]
   },
   "summary": {
-    "totalTrades": 7,
-    "successTrades": 7,
+    "totalTrades": 8,
+    "successTrades": 8,
     "totalPnl": 0,
-    "latestBalance": 0.0,
+    "latestBalance": 5311.0,
     "stockValue": 0,
     "stockCost": 0,
     "unrealizedPnl": 0,
     "realizedPnl": 0,
-    "cashBalance": 0,
-    "totalAssets": 0,
-    "deployedCapital": 0
+    "cashBalance": 5311,
+    "totalAssets": 5311,
+    "deployedCapital": 5311
   },
-  "liveUpdatedAt": "2026-06-09T15:02:41",
+  "liveUpdatedAt": "2026-09-14T12:27:27",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
