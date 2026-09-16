@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T13:00:05.125740",
+  "generatedAt": "2026-09-16T13:41:29.786030",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -170,7 +170,7 @@
       "v": 19294.0
     },
     {
-      "t": "09-16 13:00",
+      "t": "09-16 13:41",
       "v": 6498.0
     }
   ],
@@ -790,17 +790,17 @@
   "summary": {
     "totalTrades": 9,
     "successTrades": 9,
-    "totalPnl": 16,
+    "totalPnl": -16,
     "latestBalance": 6498.0,
     "stockValue": 0,
     "stockCost": 0,
     "unrealizedPnl": 0,
-    "realizedPnl": 16,
+    "realizedPnl": -16,
     "cashBalance": 6498,
     "totalAssets": 6498,
     "deployedCapital": 6498
   },
-  "liveUpdatedAt": "2026-09-16T13:00:04",
+  "liveUpdatedAt": "2026-09-16T13:41:29",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
