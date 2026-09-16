@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T14:49:27.977930",
+  "generatedAt": "2026-09-16T14:50:00.027853",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -136,8 +136,8 @@
     },
     {
       "date": "2026-09-16",
-      "pnl": -60,
-      "cumPnl": -1602
+      "pnl": -108,
+      "cumPnl": -1650
     }
   ],
   "balanceHist": [
@@ -816,7 +816,7 @@
     "totalAssets": 6498,
     "deployedCapital": 6498
   },
-  "liveUpdatedAt": "2026-09-16T14:49:27",
+  "liveUpdatedAt": "2026-09-16T14:49:59",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
