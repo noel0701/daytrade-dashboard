@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T14:50:00.027853",
+  "generatedAt": "2026-09-17T10:07:18.154779",
   "trades": [
     {
       "datetime": "2026-06-03 09:01",
@@ -186,8 +186,12 @@
       "v": 19294.0
     },
     {
-      "t": "09-16 14:49",
+      "t": "09-17 07:22",
       "v": 6498.0
+    },
+    {
+      "t": "09-17 10:07",
+      "v": 19234.0
     }
   ],
   "picksByDate": {
@@ -435,7 +439,8 @@
         "reason": "株探話題株にランクイン。低位株でデイトレ向き。具体的な材料は不明だが短期資金流入期待。",
         "risk": "材料不明確のため仕手的な動きに乗る形となり、急反落リスクあり。"
       }
-    ]
+    ],
+    "2026-09-17": []
   },
   "priceHistory": {
     "4901": [
@@ -806,17 +811,17 @@
   "summary": {
     "totalTrades": 10,
     "successTrades": 10,
-    "totalPnl": -48,
-    "latestBalance": 6498.0,
+    "totalPnl": 0,
+    "latestBalance": 19234.0,
     "stockValue": 0,
     "stockCost": 0,
     "unrealizedPnl": 0,
-    "realizedPnl": -48,
-    "cashBalance": 6498,
-    "totalAssets": 6498,
-    "deployedCapital": 6498
+    "realizedPnl": 0,
+    "cashBalance": 19234,
+    "totalAssets": 19234,
+    "deployedCapital": 19234
   },
-  "liveUpdatedAt": "2026-09-16T14:49:59",
+  "liveUpdatedAt": "2026-09-17T10:07:17",
   "yahooPricesUpdatedAt": "2026-06-03T22:50:56",
   "topicsMeta": {
     "2026-05-27": {
@@ -1031,6 +1036,22 @@
           "code": "4689",
           "name": "ヤフー",
           "reason": "親会社の日経新聞広告料金水増し問題が報道され、グループ全体へのネガティブ影響懸念で避けるべき"
+        }
+      ]
+    },
+    "2026-09-17": {
+      "sentiment": "中立",
+      "summary": "米FRB利上げで慎重ムード。新規上場のG-Skyfall関連に注目も、メルカリ株安など個別材料でボラティリティ高まる。全体的には様子見姿勢が優勢。",
+      "avoids": [
+        {
+          "code": "4385",
+          "name": "メルカリ",
+          "reason": "1カ月で3割下落との報道。下落トレンド継続中で短期反発は期待薄。リスクリワード悪い。"
+        },
+        {
+          "code": "",
+          "name": "G-Convano",
+          "reason": "有償ストックオプション発行は既存株主の希薄化懸念。短期的にはネガティブ材料。"
         }
       ]
     }
